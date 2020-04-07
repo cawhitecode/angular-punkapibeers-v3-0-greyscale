@@ -1,0 +1,15 @@
+.card-img {
+  height: 300px;
+  width: 100px;
+}
+.card {
+  margin: .5rem;
+  background-color: rgba(245, 245, 245, 0.7);  
+}
+
+.card-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}

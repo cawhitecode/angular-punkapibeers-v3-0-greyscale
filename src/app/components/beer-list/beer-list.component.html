@@ -1,0 +1,44 @@
+<app-beer-filters #filters></app-beer-filters>
+<div *ngIf="(beers$ | async)?.length > 0; else noBeers">
+  <div class="row mx-auto">
+    <div class="col-1">
+    </div>
+      <div class="col-10">        
+        <div class="row mx-auto">
+        <div class="col-xl-4 col-lg-6 col-md-8 col-sm-11 mx-auto" *ngFor="let beer of beers$ | async">
+          <div class="card border-dark mb-3 max-width: 18rem;">
+            <div class="row no-gutters">
+                <div class="col-sm-4">
+                    <img class="card-img" src='{{ beer.image_url }}' onerror="this.src='https://lh6.googleusercontent.com/proxy/B98vak4HyrMSmACUPipeDwB9jobWDfwbqQ4PjqPmYvR4pK8SKWoZZfbuURguZ0ajuJymC75ECxiW9fPmrhm1Yx_Fq_S4gRDdetLycmazD5WKJCO41-4fmKnmjFHwFlSI4CzQwdFtfJADmFjlyICU3TEIcChERo0';" alt=''>
+                </div>
+                <div class="col-sm-8">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ beer.name }}</h5>
+                        <p class="card-text">{{ beer.tagline }}</p>
+                        <ul>
+                          <li>ABV: {{ beer.abv }}% </li>
+                          <li>IBU: {{ beer.ibu }}</li>
+                          <li>EBC: {{ beer.ebc }}</li>
+                          <li>PH: {{ beer.ph }}</li>
+                          <li>First Brewed: {{ beer.first_brewed}}</li>
+                        </ul>
+                        <app-beer-modal-more-info [beer]="beer"></app-beer-modal-more-info>
+                    </div>
+                </div>
+            </div>
+        </div>          
+    </div>
+      </div>
+  </div>
+  <div class="col-1">
+    <app-go-to-top></app-go-to-top>
+    </div>
+</div>
+<app-infinite-scroll></app-infinite-scroll>
+</div>
+
+    
+
+<ng-template #noBeers>
+  <app-beer-empty [filters]="filters"></app-beer-empty>
+</ng-template>
